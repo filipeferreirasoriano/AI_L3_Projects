@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliação de Risco - Fuzzy</title>
+</head>
+<body>
+    <h1>Gestão de Riscos em Projetos de Software</h1>
+    <form method="POST">
+        {% for campo in ['experiencia', 'turnover', 'clareza_requisitos', 'complexidade',
+                         'mudanca_escopo', 'disponibilidade_cliente', 'maturidade_processo',
+                         'orcamento', 'ferramentas', 'estimativas', 'comunicacao', 'integracao',
+                         'tamanho_equipe', 'tempo', 'dependencia'] %}
+            <label>{{ campo.replace('_', ' ').capitalize() }} (0-10):</label>
+            <input type="number" name="{{ campo }}" min="0" max="10" step="1" required><br>
+        {% endfor %}
+        <br><button type="submit">Avaliar Risco</button>
+    </form>
+
+    {% if resultado is not none %}
+        <h2>Nível de Risco: {{ resultado }}</h2>
+    {% endif %}
+</body>
+</html>
